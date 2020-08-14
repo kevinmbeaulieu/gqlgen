@@ -133,7 +133,7 @@ func TestReferencedPackages(t *testing.T) {
 func TestConfigCheck(t *testing.T) {
 	t.Run("invalid config format due to conflicting package names", func(t *testing.T) {
 		config := Config{
-			Exec:  PackageConfig{Filename: "generated/exec.go", Package: "graphql"},
+			Exec:  ExecConfig{Filename: "generated/exec.go", Package: "graphql"},
 			Model: PackageConfig{Filename: "generated/models.go"},
 		}
 
@@ -142,7 +142,7 @@ func TestConfigCheck(t *testing.T) {
 
 	t.Run("federation must be in exec package", func(t *testing.T) {
 		config := Config{
-			Exec:       PackageConfig{Filename: "generated/exec.go"},
+			Exec:       ExecConfig{Filename: "generated/exec.go"},
 			Federation: PackageConfig{Filename: "anotherpkg/federation.go"},
 		}
 
@@ -151,7 +151,7 @@ func TestConfigCheck(t *testing.T) {
 
 	t.Run("federation must have same package name as exec", func(t *testing.T) {
 		config := Config{
-			Exec:       PackageConfig{Filename: "generated/exec.go"},
+			Exec:       ExecConfig{Filename: "generated/exec.go"},
 			Federation: PackageConfig{Filename: "generated/federation.go", Package: "federation"},
 		}
 
@@ -160,7 +160,7 @@ func TestConfigCheck(t *testing.T) {
 
 	t.Run("deprecated federated flag raises an error", func(t *testing.T) {
 		config := Config{
-			Exec:      PackageConfig{Filename: "generated/exec.go"},
+			Exec:      ExecConfig{Filename: "generated/exec.go"},
 			Federated: true,
 		}
 
